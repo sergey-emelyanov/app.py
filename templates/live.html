@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<a class="btn btn-warning home" href="/">На главную</a>
+<a class="btn btn-info refresh" href="/live">Перезапустить игру</a>
+ <div class="counter">Поколение {{ life.counter }}</div>
+<table class="world">
+    {% for i in range(life.world|length) %}
+        <tr>
+            {% for j in range(life.world[i]|length) %}
+            {% if life.world[i][j]==1 %}
+                    <td class="cell living-cell">1</td>
+            {% else %}
+                    <td class="cell ">0</td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    setInterval(() => window.location.reload(), 5000);
+</script>
+{% endblock %}
